@@ -1,0 +1,18 @@
+# Titanic Birth Records — fragments for exploring titanic-birth-records.json
+# alongside titanic.csv (mount both: qua --defs births.quarb
+# QUERY titanic.csv titanic-birth-records.json).
+
+# every birth record, whichever archive shape holds it
+def &records: /titanic-birth-records//*[::passenger_id] ;
+
+# the record for the driving manifest row ($$ = the driver)
+def &record: /titanic-birth-records//*[::passenger_id = $$::PassengerId] ;
+
+# the manifest row for the driving record
+def &row: /titanic/row[::PassengerId = $$::passenger_id] ;
+
+# same, against a --save'd born table
+def &itsborn: /born/*[::passenger_id = $$::PassengerId] ;
+
+# Julian to Gregorian, 1900-1917 (the Russian-Empire dates)
+def &gregorian: | tp("%Y-%m-%d") | ($_ + 12d) ;
