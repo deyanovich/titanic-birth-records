@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
+  <rect width="1200" height="675" fill="#ffffff"/>
+  <!-- certificate double frame -->
+  <rect x="36" y="36" width="1128" height="603" fill="none" stroke="#8a2434" stroke-width="3"/>
+  <rect x="48" y="48" width="1104" height="579" fill="none" stroke="#d8c3c7" stroke-width="1.5"/>
+  <!-- corner marks -->
+  <g stroke="#8a2434" stroke-width="3">
+    <path d="M 36 90 v -54 h 54" fill="none"/>
+    <path d="M 1110 36 h 54 v 54" fill="none"/>
+    <path d="M 1164 585 v 54 h -54" fill="none"/>
+    <path d="M 90 639 h -54 v -54" fill="none"/>
+  </g>
+  <!-- title block -->
+  <text x="600" y="150" text-anchor="middle" font-family="IBM Plex Serif" font-weight="600" font-size="64" fill="#5e1a24">Titanic Birth Records</text>
+  <text x="600" y="200" text-anchor="middle" font-family="IBM Plex Sans" font-size="27" fill="#555555">fictional 1912 birth records &#183; eight archive shapes &#183; one JSON file</text>
+  <line x1="330" y1="232" x2="870" y2="232" stroke="#d8c3c7" stroke-width="1.5"/>
+  <!-- the tree -->
+  <g font-family="IBM Plex Mono" font-size="26" fill="#333333">
+    <text x="330" y="288">titanic-birth-records.json</text>
+    <text x="330" y="330">&#9500;&#9472; gro</text>
+    <text x="720" y="330">&#9500;&#9472; us_state_records</text>
+    <text x="330" y="372">&#9500;&#9472; irish_parishes</text>
+    <text x="720" y="372">&#9500;&#9472; ottoman_nufus</text>
+    <text x="330" y="414">&#9500;&#9472; kyrkob&#246;cker</text>
+    <text x="720" y="414">&#9500;&#9472; matricula_baptizatorum</text>
+    <text x="330" y="456">&#9492;&#9472; actes_de_naissance</text>
+    <text x="720" y="456">&#9492;&#9472; metricheskie_knigi</text>
+  </g>
+  <g font-family="IBM Plex Mono" font-size="26">
+    <text x="376" y="540" fill="#8a2434">//*[::passenger_id] @| count</text>
+    <text x="376" y="580" fill="#555555">1146</text>
+  </g>
+  <text x="1084" y="612" text-anchor="end" font-family="IBM Plex Mono" font-size="22" fill="#999999">quarb.org</text>
+</svg>
