@@ -65,6 +65,11 @@ Nothing in the JSON reveals survival.
 - `titanic-birth-records.json` — the birth records (UTF-8, one JSON
   document).
 - `titanic.csv` — the classic Kaggle training table, unchanged.
+
+Source repository (issues, history, the promote flow):
+[github.com/deyanovich/titanic-birth-records](https://github.com/deyanovich/titanic-birth-records),
+mirroring
+[gitlab.com/quarb/titanic-birth-records](https://gitlab.com/quarb/titanic-birth-records).
 - `the-rest-of-the-iceberg.ipynb` /
   `the-rest-of-the-iceberg-native.ipynb` — the executed
   companion notebooks (Jupyter kernel and native quai session),
