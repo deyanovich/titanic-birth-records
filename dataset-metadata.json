@@ -5,5 +5,14 @@
     {
       "name": "CC0-1.0"
     }
-  ]
+  ],
+  "subtitle": "Fictional 1912 birth records for the Titanic's passengers — eight archive shapes",
+  "keywords": [
+    "history",
+    "beginner",
+    "exploratory data analysis",
+    "data cleaning",
+    "json"
+  ],
+  "description": "A fictional but historically careful reconstruction of birth\nrecords for the passengers of the Titanic — the classic\n`titanic.csv` manifest joined to the mess it could have come\nfrom.\n\n**`titanic-birth-records.json`** holds 1,146 records across\neight registration systems of 1912, each with its own tree\nshape: GRO quarterly indexes, Irish parish registers, Swedish\nkyrkoböcker, French actes de naissance, US state records,\nOttoman nüfus, Latin matricula baptizatorum, and Russian\nmetricheskie knigi (Julian dates included). Names are spelled\nthe way each system would spell them, ages disagree the way\narchives disagree, and some passengers simply are not there —\nthe coverage gaps are part of the data.\n\nThe set is **deterministically generated**:\n`gen-titanic-birth-records.py` (seeded) rebuilds the JSON\nbyte-identically from the included classic tables\n(`titanic.csv`, `test.csv`, `titanic3.csv`). Two executed\ncompanion notebooks walk the exploration end to end, and\n`births.quarb` carries reusable query fragments.\n\nIt accompanies the article\n[The rest of the iceberg](https://quarb.org/articles/the-rest-of-the-iceberg.html)\n(joining, anti-joining, and age recovery across all eight\nshapes with [Quarb](https://quarb.org)); the source repo is\n[github.com/deyanovich/titanic-birth-records](https://github.com/deyanovich/titanic-birth-records).\n"
 }
