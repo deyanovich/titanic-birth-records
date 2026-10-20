@@ -1,18 +1,247 @@
 {
-  "title": "Titanic Birth Records",
-  "id": "deyanovich/titanic-birth-records",
-  "licenses": [
-    {
-      "name": "CC0-1.0"
-    }
-  ],
-  "subtitle": "Fictional 1912 birth records for the Titanic's passengers — eight archive shapes",
-  "keywords": [
-    "history",
-    "beginner",
-    "exploratory data analysis",
-    "data cleaning",
-    "json"
-  ],
-  "description": "A fictional but historically careful reconstruction of birth\nrecords for the passengers of the Titanic — the classic\n`titanic.csv` manifest joined to the mess it could have come\nfrom.\n\n**`titanic-birth-records.json`** holds 1,146 records across\neight registration systems of 1912, each with its own tree\nshape: GRO quarterly indexes, Irish parish registers, Swedish\nkyrkoböcker, French actes de naissance, US state records,\nOttoman nüfus, Latin matricula baptizatorum, and Russian\nmetricheskie knigi (Julian dates included). Names are spelled\nthe way each system would spell them, ages disagree the way\narchives disagree, and some passengers simply are not there —\nthe coverage gaps are part of the data.\n\nThe set is **deterministically generated**:\n`gen-titanic-birth-records.py` (seeded) rebuilds the JSON\nbyte-identically from the included classic tables\n(`titanic.csv`, `test.csv`, `titanic3.csv`). Two executed\ncompanion notebooks walk the exploration end to end, and\n`births.quarb` carries reusable query fragments.\n\nIt accompanies the article\n[The rest of the iceberg](https://quarb.org/articles/the-rest-of-the-iceberg.html)\n(joining, anti-joining, and age recovery across all eight\nshapes with [Quarb](https://quarb.org)); the source repo is\n[github.com/deyanovich/titanic-birth-records](https://github.com/deyanovich/titanic-birth-records).\n"
+ "title": "Titanic Birth Records",
+ "id": "deyanovich/titanic-birth-records",
+ "licenses": [
+  {
+   "name": "CC0-1.0"
+  }
+ ],
+ "subtitle": "Fictional 1912 birth records for the Titanic's passengers — eight archive shapes",
+ "keywords": [
+  "history",
+  "beginner",
+  "exploratory data analysis",
+  "data cleaning",
+  "json"
+ ],
+ "description": "A fictional but historically careful reconstruction of birth\nrecords for the passengers of the Titanic — the classic\n`titanic.csv` manifest joined to the mess it could have come\nfrom.\n\n**`titanic-birth-records.json`** holds 1,146 records across\neight registration systems of 1912, each with its own tree\nshape: GRO quarterly indexes, Irish parish registers, Swedish\nkyrkoböcker, French actes de naissance, US state records,\nOttoman nüfus, Latin matricula baptizatorum, and Russian\nmetricheskie knigi (Julian dates included). Names are spelled\nthe way each system would spell them, ages disagree the way\narchives disagree, and some passengers simply are not there —\nthe coverage gaps are part of the data.\n\nThe set is **deterministically generated**:\n`gen-titanic-birth-records.py` (seeded) rebuilds the JSON\nbyte-identically from the included classic tables\n(`titanic.csv`, `test.csv`, `titanic3.csv`). Two executed\ncompanion notebooks walk the exploration end to end, and\n`births.quarb` carries reusable query fragments.\n\nIt accompanies the article\n[The rest of the iceberg](https://quarb.org/articles/the-rest-of-the-iceberg.html)\n(joining, anti-joining, and age recovery across all eight\nshapes with [Quarb](https://quarb.org)); the source repo is\n[github.com/deyanovich/titanic-birth-records](https://github.com/deyanovich/titanic-birth-records).\n\n## Provenance & methodology\n\n**Sources.** The three manifest tables are the public-domain\nclassics: Kaggle's train/test split (`titanic.csv`,\n`test.csv`) and the full `titanic3` table of the\nVanderbilt/Encyclopedia-Titanica lineage. The birth records\nare **fictional**, generated from those tables.\n\n**Methodology.** `gen-titanic-birth-records.py` is seeded and\ndeterministic: every archive shape, spelling rule, calendar\nsystem, disagreement, and coverage gap is an explicit,\nreviewable rule in the generator — re-run it and the JSON\nrebuilds byte-identically. Column-level documentation lives on\neach file's schema here; the full walkthrough is the companion\narticle and the two attached notebooks.\n\n**Update cadence.** The dataset is complete as designed;\nversions only follow generator refinements (never silent data\nchurn).\n",
+ "resources": [
+  {
+   "path": "titanic.csv",
+   "description": "The classic Kaggle train split: 891 passengers, 12 columns, byte-for-byte the table everyone has modeled — here it plays the tip of the iceberg that the birth records sit under.",
+   "schema": {
+    "fields": [
+     {
+      "name": "PassengerId",
+      "type": "numeric",
+      "description": "Row id, 1–891 — the classic Kaggle train split. The birth records cite this id from every archive (1,146 citations across ids 1–1309)."
+     },
+     {
+      "name": "Survived",
+      "type": "numeric",
+      "description": "1 = survived, 0 = did not. Present only in this file; the birth records deliberately carry no survival information (no leakage)."
+     },
+     {
+      "name": "Pclass",
+      "type": "numeric",
+      "description": "Ticket class (1, 2, 3) — the usual proxy for socio-economic standing."
+     },
+     {
+      "name": "Name",
+      "type": "string",
+      "description": "Full name as the manifest spells it: 'Surname, Title. Given (Maiden)' — married women appear under husbands' names with maiden names in parentheses; the archives spell the same people their own ways."
+     },
+     {
+      "name": "Sex",
+      "type": "string",
+      "description": "male / female, as recorded."
+     },
+     {
+      "name": "Age",
+      "type": "numeric",
+      "description": "Age in years at sailing, as the manifest recorded it — fractional for infants (0.92 = 11 months), blank where the manifest is silent; the birth records exist to fill and cross-examine exactly those blanks."
+     },
+     {
+      "name": "SibSp",
+      "type": "numeric",
+      "description": "Siblings + spouses aboard. The birth-record patronymics and parish sibling entries corroborate (or complicate) these counts."
+     },
+     {
+      "name": "Parch",
+      "type": "numeric",
+      "description": "Parents + children aboard."
+     },
+     {
+      "name": "Ticket",
+      "type": "string",
+      "description": "Ticket number, as printed."
+     },
+     {
+      "name": "Fare",
+      "type": "numeric",
+      "description": "Fare paid, pounds sterling."
+     },
+     {
+      "name": "Cabin",
+      "type": "string",
+      "description": "Cabin number where known; mostly blank in third class."
+     },
+     {
+      "name": "Embarked",
+      "type": "string",
+      "description": "Port of embarkation: C = Cherbourg, Q = Queenstown, S = Southampton."
+     }
+    ]
+   }
+  },
+  {
+   "path": "test.csv",
+   "description": "The classic Kaggle test split: 418 passengers, same columns minus Survived. Included so the archives can cite passengers beyond id 891 — the 373 birth records past the train split are this file's shadow.",
+   "schema": {
+    "fields": [
+     {
+      "name": "PassengerId",
+      "type": "numeric",
+      "description": "Row id, 892–1309 — the classic Kaggle test split. The birth records cite this id from every archive (1,146 citations across ids 1–1309)."
+     },
+     {
+      "name": "Pclass",
+      "type": "numeric",
+      "description": "Ticket class (1, 2, 3) — the usual proxy for socio-economic standing."
+     },
+     {
+      "name": "Name",
+      "type": "string",
+      "description": "Full name as the manifest spells it: 'Surname, Title. Given (Maiden)' — married women appear under husbands' names with maiden names in parentheses; the archives spell the same people their own ways."
+     },
+     {
+      "name": "Sex",
+      "type": "string",
+      "description": "male / female, as recorded."
+     },
+     {
+      "name": "Age",
+      "type": "numeric",
+      "description": "Age in years at sailing, as the manifest recorded it — fractional for infants (0.92 = 11 months), blank where the manifest is silent; the birth records exist to fill and cross-examine exactly those blanks."
+     },
+     {
+      "name": "SibSp",
+      "type": "numeric",
+      "description": "Siblings + spouses aboard. The birth-record patronymics and parish sibling entries corroborate (or complicate) these counts."
+     },
+     {
+      "name": "Parch",
+      "type": "numeric",
+      "description": "Parents + children aboard."
+     },
+     {
+      "name": "Ticket",
+      "type": "string",
+      "description": "Ticket number, as printed."
+     },
+     {
+      "name": "Fare",
+      "type": "numeric",
+      "description": "Fare paid, pounds sterling."
+     },
+     {
+      "name": "Cabin",
+      "type": "string",
+      "description": "Cabin number where known; mostly blank in third class."
+     },
+     {
+      "name": "Embarked",
+      "type": "string",
+      "description": "Port of embarkation: C = Cherbourg, Q = Queenstown, S = Southampton."
+     }
+    ]
+   }
+  },
+  {
+   "path": "titanic3.csv",
+   "description": "The full 1,309-passenger table (the Vanderbilt/Encyclopedia-Titanica titanic3 lineage), with survival for everyone plus boat, body, and home.dest. The generator uses it as the complete manifest the registers 'know'.",
+   "schema": {
+    "fields": [
+     {
+      "name": "pclass",
+      "type": "numeric",
+      "description": "Ticket class (1, 2, 3)."
+     },
+     {
+      "name": "survived",
+      "type": "numeric",
+      "description": "1 = survived, 0 = did not — present for all 1,309."
+     },
+     {
+      "name": "name",
+      "type": "string",
+      "description": "Full name, manifest spelling."
+     },
+     {
+      "name": "sex",
+      "type": "string",
+      "description": "male / female."
+     },
+     {
+      "name": "age",
+      "type": "numeric",
+      "description": "Age at sailing; fractional for infants, blank where unknown."
+     },
+     {
+      "name": "sibsp",
+      "type": "numeric",
+      "description": "Siblings + spouses aboard."
+     },
+     {
+      "name": "parch",
+      "type": "numeric",
+      "description": "Parents + children aboard."
+     },
+     {
+      "name": "ticket",
+      "type": "string",
+      "description": "Ticket number."
+     },
+     {
+      "name": "fare",
+      "type": "numeric",
+      "description": "Fare, pounds sterling."
+     },
+     {
+      "name": "cabin",
+      "type": "string",
+      "description": "Cabin where known."
+     },
+     {
+      "name": "embarked",
+      "type": "string",
+      "description": "C / Q / S."
+     },
+     {
+      "name": "boat",
+      "type": "string",
+      "description": "Lifeboat identifier, for survivors who reached one."
+     },
+     {
+      "name": "body",
+      "type": "string",
+      "description": "Recovery body number, where a body was identified."
+     },
+     {
+      "name": "home.dest",
+      "type": "string",
+      "description": "Home / destination as compiled by the Encyclopedia Titanica lineage of this table."
+     }
+    ]
+   }
+  },
+  {
+   "path": "titanic-birth-records.json",
+   "description": "The dataset proper: 1,146 fictional birth records across eight 1912 registration systems, each with its own authentic tree shape — GRO quarterly index (England & Wales), Irish civil registration, Swedish kyrkoböcker, French actes de naissance, US state vital records, Ottoman nüfus (Rumi years), Latin matricula baptizatorum, Russian metricheskie knigi (Julian dates). Every record cites a passenger_id; names, dates, and precisions disagree exactly the way real archives disagree, and the coverage gaps are deliberate. No survival information anywhere."
+  },
+  {
+   "path": "gen-titanic-birth-records.py",
+   "description": "The seeded, deterministic generator: rebuilds titanic-birth-records.json byte-identically from the three CSV tables. Reading it is reading the dataset's complete methodology — every disagreement, misspelling, and gap is a documented rule, not noise."
+  },
+  {
+   "path": "births.quarb",
+   "description": "A commented Quarb fragment library for querying the records — the calendar conversions (Julian, Rumi) and per-archive year extraction used by the companion article and notebooks."
+  },
+  {
+   "path": "README.md",
+   "description": "The dataset card: what each archive shape looks like, the join keys, the no-leakage rules (no survival information in the records), and links to the companion article and notebooks."
+  }
+ ],
+ "expectedUpdateFrequency": "never",
+ "userSpecifiedSources": "https://github.com/deyanovich/titanic-birth-records"
 }

@@ -5,14 +5,14 @@
 # every birth record, whichever archive shape holds it
 def &records: /titanic-birth-records//*[::passenger_id] ;
 
-# the record for the driving manifest row ($$ = the driver)
-def &record: /titanic-birth-records//*[::passenger_id = $$::PassengerId] ;
+# the record for the driving manifest row ($$0 = the driver)
+def &record: /titanic-birth-records//*[::passenger_id = $$0::PassengerId] ;
 
 # the manifest row for the driving record
-def &row: /titanic/row[::PassengerId = $$::passenger_id] ;
+def &row: /titanic/row[::PassengerId = $$0::passenger_id] ;
 
 # same, against a --save'd born table
-def &itsborn: /born/*[::passenger_id = $$::PassengerId] ;
+def &itsborn: /born/*[::passenger_id = $$0::PassengerId] ;
 
 # Julian to Gregorian, 1900-1917 (the Russian-Empire dates)
 def &gregorian: | tp("%Y-%m-%d") | ($_ + 12d) ;

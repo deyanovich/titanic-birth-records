@@ -62,24 +62,36 @@ Nothing in the JSON reveals survival.
 
 ## Files
 
-- `titanic-birth-records.json` — the birth records (UTF-8, one JSON
-  document).
-- `titanic.csv` — the classic Kaggle training table, unchanged.
+- `titanic-birth-records.json` — the birth records: 1,146
+  entries across the eight archive shapes (UTF-8, one JSON
+  document). Every record cites a `passenger_id`; none carries
+  survival information.
+- `titanic.csv` — the classic Kaggle training table (891
+  passengers), unchanged.
+- `test.csv` — the classic test split (418 passengers, no
+  `Survived`), so the archives can cite passengers beyond
+  id 891.
+- `titanic3.csv` — Thomas Cason's full 1,309-passenger
+  compilation (survival for all, plus `boat`, `body`,
+  `home.dest` — the column that anchors each passenger's
+  origin). The generator's complete manifest.
+- `gen-titanic-birth-records.py` — the seeded, deterministic
+  generator (same inputs → same bytes): the dataset's entire
+  methodology as reviewable code.
+- `births.quarb` — a commented query-fragment library (the
+  calendar conversions and per-archive year extraction).
+
+Column-level documentation for all three tables lives on each
+file's schema on this page. The two executed companion
+notebooks — the Jupyter-kernel and native-session
+walkthroughs — are attached as Kaggle notebooks on the
+dataset, accompanying the article
+[The rest of the iceberg](https://quarb.org/articles/the-rest-of-the-iceberg.html).
 
 Source repository (issues, history, the promote flow):
 [github.com/deyanovich/titanic-birth-records](https://github.com/deyanovich/titanic-birth-records),
 mirroring
 [gitlab.com/quarb/titanic-birth-records](https://gitlab.com/quarb/titanic-birth-records).
-- `the-rest-of-the-iceberg.ipynb` /
-  `the-rest-of-the-iceberg-native.ipynb` — the executed
-  companion notebooks (Jupyter kernel and native quai session),
-  accompanying the article
-  [The rest of the iceberg](https://quarb.org/articles/the-rest-of-the-iceberg.html).
-- `gen-titanic-birth-records.py` — the seeded, deterministic
-  generator (same inputs → same bytes), for provenance and
-  remixing. It also reads `test.csv` and `titanic3.csv`
-  (Thomas Cason's 1,309-passenger compilation, the source of
-  `home.dest`, which anchors each passenger's origin).
 
 ## Provenance and license
 
@@ -92,6 +104,10 @@ is made about any real person.
 The synthetic content and the generator are released under
 **CC0 1.0**. The classic Titanic passenger tables are included
 unchanged from their widely redistributed public copies.
+
+**Cite as:** B. Durickovic, *Titanic Birth Records* (fictional,
+generated), Kaggle, 2026 —
+kaggle.com/datasets/deyanovich/titanic-birth-records.
 
 Made as a companion to the Quarb query language's article
 *The Rest of the Iceberg* — see
